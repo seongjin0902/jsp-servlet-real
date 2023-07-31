@@ -1,56 +1,83 @@
 package Domain.Common.Dto;
 
-
-public class BoardDto{
-	private int bookcode;
-	private String bookname;
-	private String publisher;
-	private String isbn;
-	//getter and setter
-	//생성자
-	//toString재정의
+public class BoardDto {
+	private int number; 		//게시물 번호
+	private String id;  		//userid 
+	private String title;		//글제목
+	private String contents;	//글내용
+	private String date;		//작성날짜
+	private int hits;			//조회수
+	
+//	디폴트 생성자
 	public BoardDto() {}
+	
+//	모든 인자를 받는 생성자
+	public BoardDto(int number, String id, String title, String contents, String date, int hits) {
+		this.number = number;
+		this.id = id;
+		this.title = title;
+		this.contents = contents;
+		this.date = date;
+		this.hits = hits;
+	}
+
+//	toString 재정의
 	@Override
 	public String toString() {
-		return "BookDto [bookcode=" + bookcode + ", bookname=" + bookname + ", publisher=" + publisher + ", isbn="
-				+ isbn + "]";
+		return "ContentsDto [number=" + number + ", id=" + id + ", title=" + title + ", contents=" + contents
+				+ ", date=" + date + ", hits=" + hits + "]";
 	}
-	public BoardDto(int bookcode, String bookname, String publisher, String isbn) {
-		super();
-		this.bookcode = bookcode;
-		this.bookname = bookname;
-		this.publisher = publisher;
-		this.isbn = isbn;
+
+//	getter and setter
+	public int getNumber() {
+		return number;
 	}
-	public int getBookcode() {
-		return bookcode;
+
+	public void setNumber(int number) {
+		this.number = number;
 	}
-	public void setBookcode(int bookcode) {
-		this.bookcode = bookcode;
+
+	public String getId() {
+		return id;
 	}
-	public String getBookname() {
-		return bookname;
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public void setBookname(String bookname) {
-		this.bookname = bookname;
+
+	public String getTitle() {
+		return title;
 	}
-	public String getPublisher() {
-		return publisher;
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+
+	public String getContents() {
+		return contents;
 	}
-	public String getIsbn() {
-		return isbn;
+
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+
+	public String getDate() {
+		return date;
 	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public int getHits() {
+		return hits;
+	}
+
+	public void setHits(int hits) {
+		this.hits = hits;
+	}
+
 	
-	
-	
-	
- 
 	
 	
 }

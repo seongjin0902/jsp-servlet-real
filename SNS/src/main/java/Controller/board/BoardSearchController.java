@@ -1,4 +1,4 @@
-package Controller.borad;
+package Controller.board;
 
 import java.io.PrintWriter;
 import java.util.List;
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import Controller.SubController;
-import Domain.Common.Dto.BoardDto;
+import Domain.Common.Dao.BoardDao;
 import Domain.Common.Service.BoardService;
 import Domain.Common.Service.BoardServiceImpl;
 
@@ -26,7 +26,7 @@ public class BoardSearchController implements SubController {
 		
 		
 		// 3 서비스 실행(서비스모듈작업 이후 처리)
-		List<BoardDto> list = null;
+		List<BoardDao> list = null;
 		try {
 		
 			list = service.getAllBook(req);

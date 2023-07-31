@@ -105,6 +105,7 @@ input {
 .namebox input {
     font-size: 16px;
     padding: 10px;
+    border-color: white;
 }
 
 /* 콤보박스 스타일 */
@@ -112,10 +113,24 @@ input {
     display: flex;
     align-items: center;
     font-size: 1.5rem;
+    border:2px solid white;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: white;
 }
 
 .phone-combo-container select {
-    margin-right: 10px;
+	height : 40px;
+	border-style: none;
+	width : 50px;
+	margin-left: 10px;
+}
+
+.phoneinput{
+	width : 340px;
+	height : 40px;
+	margin-bottom: 0px;
+	border-style: none;
 }
 
 .joinBB {
@@ -158,7 +173,7 @@ input {
                             <option value="018">018</option>
                             <option value="019">019</option>
                         </select>
-                        <input name="phone" required />
+                        <input class="phoneinput" name="phone" required />
                     </div>
                     <input name="birth" type="date" required />
                 </div>

@@ -19,6 +19,4 @@ public interface MemberDao {
 
 	MemberDto select_one(String id, String pw) throws Exception;
 
-	boolean checkIdDuplicate(String id);
-
-}  
+}

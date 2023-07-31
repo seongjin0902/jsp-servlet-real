@@ -85,7 +85,8 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 			throw new Exception("이거 rs 없는거다..");
 		}
 		
-		pstmt.close();df
+		pstmt.close();
+			
 		return dto;
 	}	
 	
@@ -125,12 +126,6 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 	public MemberDto select(String id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	@Override
-	public boolean checkIdDuplicate(String id) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	

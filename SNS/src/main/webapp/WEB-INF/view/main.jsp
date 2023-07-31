@@ -1,102 +1,237 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>WeSee</title>
+<style>
+body {
+	width: 1024px;
+	height: 860px;
+	margin: 10px auto;
+	overflow: auto;
+	max-height: 860px;
+}
+
+h1 {
+	text-align: center;
+	text-decoration-line: none;
+	color: black;
+	font-size: 50px;
+	border-bottom: 5px solid;
+	padding-bottom: 30px;
+}
+
+a {
+	text-decoration-line: none;
+	color: black;
+	font-size: 50px;
+}
+
+table {
+	border: 1px solid;
+}
+
+table>tr>th {
+	border: 1px solid;
+}
+
+.scroll::-webkit-scrollbar {
+	display: none;
+}
+</style>
 </head>
-<body>
+<body class="scroll">
 
-<h1>MAIN</h1>
-Account : ${ID} <br/>
-Role : ${ROLE} <br/>
-<hr>
-<!-- 나의 메뉴이동 -->
-<c:if test="${not empty ROLE}">
-	<a href=<c:url value="/mypage.do" /> >나의메뉴로 이동</a></br>
-</c:if>
+	<h1>
+		<a href="/WeSee/">WeSee</a>
+	</h1>
 
-
-<!-- 도서 조회하기 -->
-<hr>
-<div>
-	<div class="search_block">
-		<input placeholder="keyfield" />
-		<input placeholder="keyword" />
-		<button class=search_btn>조회</button>
+	<div>
+		<button style="border: none; background-color: white;">
+			<img src="Resource/Bell.png">
+		</button>
+		<button style="border: none; background-color: white;">
+			<img src="Resource/Search.png">
+		</button>
+		<button style="border: none; background-color: white;">
+			<img src="Resource/Pencil.png">
+		</button>
+		<a href=<c:url value="/messageController"/>>
+			<button style="border: none; background-color: white;">
+				<img src="Resource/Message.png">
+			</button>
+		</a>
+		<a href="/mypage.jsp">
+		<button style="border: none; background-color: white;">
+			<img src="Resource/Person.png">
+		</button>
+		</a>
 	</div>
-	<div class="show_block" style="width:500px;height:500px;border:1px solid;overflow:auto;">
-	
+	<div
+		style="display: flex; justify-content: space-evenly; margin-top: 30px;">
+		<table style="width: 400px; height: 650px; background-color: black;">
+			<tr style="width: 400px; height: 20px;">
+				<th style="display: flex; color: white;">
+					<div>
+						<label>mango123</label>
+					</div>
+					<div style="margin-left: 170px;">
+						<label>2023-07-27(15:30)</label>
+					</div>
+				</th>
+				<!-- 글쓴 시간이 빠를수록 위쪽으로 배치  -->
+			</tr>
+			<tr>
+				<th style="background-color: white; height: 450px;"><div
+						class="scroll" style="max-height: 450px; overflow: auto;">글내용(사진,글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)</div></th>
+			</tr>
+			<tr>
+				<th style="display: flex; height: 28px; background-color: white;">
+					<div>
+						<button style="border: 0px; background-color: white;">
+							<img src="Resource/Good.png">
+						</button>
+					</div>
+					<div>좋아요</div>
+					<div>3.5k</div> <!-- 자동숫자올라감. 1000이 넘어가면1.0k로 변경 소수점 둘째짜리 삭제 가능?-->
+					<div style="margin-left: 150px;">
+						<label>조회수</label>
+					</div>
+					<div style="margin-left: 20px;">66</div> <!--  자동숫자올라감.1000이 넘어가면 1.0k로 변경..소수점 둘째짜리 삭제 가능?? -->
+				</th>
+			</tr>
+			<tr class='scroll'
+				style="background-color: white; height: 90px; overflow: auto;">
+				<td style="display: flex;">
+					<div style="position: relative;">mango456</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는
+						망고입니다ffaddgdfsgsffas..</div> <!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+				<td style="display: flex;">
+					<div style="position: relative;">Durumi</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는두루미입니다.fas..</div>
+					<!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+				<td style="display: flex;">
+					<div style="position: relative;">mango456</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는
+						망고입니다ffaddgdfsgsffas..</div> <!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+				<td style="display: flex;">
+					<div style="position: relative;">mango456</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는
+						망고입니다ffaddgdfsgsffas..</div> <!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+				<td style="display: flex;">
+					<div style="position: relative;">mango456</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는
+						망고입니다ffaddgdfsgsffas..</div> <!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+
+
+
+			</tr>
+
+
+			<tr style="background-color: white;">
+				<th>
+					<div>
+						<textarea class='scroll' placeholder="댓글을 입력하세요."
+							style="border: none; resize: none; width: 380px; outline: none;"></textarea>
+					</div>
+				</th>
+			</tr>
+		</table>
+		<table style="width: 400px; height: 650px; background-color: black;">
+			<tr style="width: 400px; height: 20px;">
+				<th style="display: flex; color: white;">
+					<div>
+						<label>mango123</label>
+					</div>
+					<div style="margin-left: 170px;">
+						<label>2023-07-27(15:30)</label>
+					</div>
+				</th>
+				<!-- 글쓴 시간이 빠를수록 위쪽으로 배치  -->
+			</tr>
+			<tr>
+				<th style="background-color: white; height: 450px;"><div
+						class="scroll" style="max-height: 450px; overflow: auto;">글내용(사진,글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)글내용(사진,동영상)</div></th>
+			</tr>
+			<tr>
+				<th style="display: flex; height: 28px; background-color: white;">
+					<div>
+						<button style="border: 0px; background-color: white;">
+							<img src="Resource/Good.png">
+						</button>
+					</div>
+					<div>좋아요</div>
+					<div>3.5k</div> <!-- 자동숫자올라감. 1000이 넘어가면1.0k로 변경 소수점 둘째짜리 삭제 가능?-->
+					<div style="margin-left: 150px;">
+						<label>조회수</label>
+					</div>
+					<div style="margin-left: 20px;">66</div> <!--  자동숫자올라감.1000이 넘어가면 1.0k로 변경..소수점 둘째짜리 삭제 가능?? -->
+				</th>
+			</tr>
+			<tr class='scroll'
+				style="background-color: white; height: 90px; overflow: auto;">
+
+				<td style="display: flex;">
+					<div style="position: relative;">mango456</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는
+						망고입니다ffaddgdfsgsffas..</div> <!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+				<td style="display: flex;">
+					<div style="position: relative;">Durumi</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는두루미입니다.fas..</div>
+					<!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+				<td style="display: flex;">
+					<div style="position: relative;">mango456</div>
+					<div class='scroll'
+						style="position: relative; margin-left: 5px; max-width: 190px; max-height: 21px; overflow: auto;">나는
+						망고입니다ffaddgdfsgsffas..</div> <!--DB 게시물의 댓글중 빨리적은 순서대로  -->
+					<div style="position: relative; margin-left: 10px;">02.02.01
+						15:30</div> <!-- nowdate(date)  -->
+				</td>
+
+			</tr>
+
+			<tr style="background-color: white;">
+				<th>
+					<div>
+						<textarea class='scroll' placeholder="댓글을 입력하세요."
+							style="border: none; resize: none; width: 380px; outline: none;"></textarea>
+					</div>
+				</th>
+			</tr>
+		</table>
 	</div>
-</div>
 
-<hr>
-
-
-<hr/>
-<c:if test="${empty ROLE}">
-	<a href="${pageContext.request.contextPath}/login.do"  >LOGIN</a></br>
-</c:if>
-<c:if test="${not empty ROLE}">
-	<a href="${pageContext.request.contextPath}/logout.do" > >LOGOUT</a></br>
-</c:if>
-
-
-
-
-<hr/>
-<div class=msg>
-${msg}
-</div>
-
-EL's Project PATH : ${pageContext.request.contextPath}<br/>
-EL's Project ServerPort :${pageContext.request.serverPort}<br/>
-<%
-	int port = request.getServerPort();
-%>
-
-<!-- axios cdn -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
-	const search_btn_el=document.querySelector('.search_btn');
-	search_btn_el.addEventListener('click',function(){
-		const projectPath='${pageContext.request.contextPath}';
-		const ServerPort = '${pageContext.request.serverPort}';
-		console.log("search_btn_el click..",projectPath);
-		
-		
-		const show_block_el = document.querySelector('.show_block');
-		//ajax , fetch , promise , axios 선택해서 비동기 요청
-		//axios Cdn 연결이후에 작업하세요(https://cdnjs.com/libraries/axios)	
-		axios.get("http://192.168.2.254:"+ ServerPort + projectPath +"/book/search.do")
-		.then(response=>{ 
-			console.log("success!",response.data); 
-			const list = response.data;
-			
-		
-			
-			list.forEach((dto)=>{
-			
-				console.log('dto',dto);
-				const dto_el = document.createElement('div');
-				dto_el.classList.add("item");
-				
-				dto_el.innerHTML+="<span>"+dto.bookcode+"</span> ";
-				dto_el.innerHTML+="<span>"+dto.bookname+"</span> ";
-				dto_el.innerHTML+="<span>"+dto.isbn+"</span> ";
-				dto_el.innerHTML+="<span>"+dto.publisher+"</span><br/>";
-				show_block_el.appendChild(dto_el);
-				
-			})
-			
-			
-		})
-		.catch(error=>{ console.log("fail.."); })	//실패시 처리로직
-		
-	})
-</script>
 
 
 

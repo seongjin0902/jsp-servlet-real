@@ -24,7 +24,7 @@ public class LoginController  implements SubController{
 		if(req.getMethod().equals("GET"))
 		{
 			try {
-				req.getRequestDispatcher("/WEB-INF/view/member/auth/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/view/member/Auth/login.jsp").forward(req, resp);
 				return ;
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
@@ -47,7 +47,7 @@ public class LoginController  implements SubController{
 			if (id.isEmpty() || pw.isEmpty()) {
 				System.out.println("[ERROR] Data Validation Check Error!");
 				req.setAttribute("msg", "[ERROR] ID나 PW가 공백입니다.");
-				req.getRequestDispatcher("/WEB-INF/view/member/auth/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/view/member/Auth/login.jsp").forward(req, resp);
 				return ;
 			}
 			//3 서비스 실행
@@ -65,7 +65,7 @@ public class LoginController  implements SubController{
 			else
 			{
 				//login.do 이동 - Forward
-				req.getRequestDispatcher("/WEB-INF/view/member/auth/login.jsp").forward(req, resp);
+				req.getRequestDispatcher("/WEB-INF/view/member/Auth/login.jsp").forward(req, resp);
 			}
 		
 		} catch (Exception e) {
