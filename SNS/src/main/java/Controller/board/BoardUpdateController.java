@@ -7,14 +7,12 @@ import Controller.SubController;
 import Domain.Common.Service.BoardService;
 import Domain.Common.Service.BoardServiceImpl;
 
-public class BoardUpdateController  implements SubController{
+public class BoardUpdateController implements SubController {
 
-	private BoardService service= BoardServiceImpl.getInstance();
+    private BoardService service = BoardServiceImpl.getInstance();
 
-	@Override
-	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("BookUpdateController execute");
-		
-	}
-
+    @Override
+    public void execute(HttpServletRequest req, HttpServletResponse resp) {
+        System.out.println("BoardUpdateController execute");
+    }
 }

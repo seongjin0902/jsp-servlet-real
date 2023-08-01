@@ -64,7 +64,7 @@ table>tr>th {
 				<img src="Resource/Message.png">
 			</button>
 		</a>
-		<a href="/mypage.jsp">
+		<a href=<c:url value="/MypageController"/>>
 		<button style="border: none; background-color: white;">
 			<img src="Resource/Person.png">
 		</button>
