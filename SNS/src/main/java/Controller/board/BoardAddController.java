@@ -19,13 +19,13 @@ public class BoardAddController implements SubController {
 	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("BookAddController execute");
+		System.out.println("BoardAddController execute");
 
 		// GET 요청 처리
 		if (req.getMethod().equals("GET")) {
 			try {
 				System.out.println("get req들어옴");
-				req.getRequestDispatcher("/WEB-INF/view/board/add.jsp").forward(req, resp);
+				req.getRequestDispatcher("/add.jsp").forward(req, resp);
 				return;
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
@@ -53,7 +53,7 @@ public class BoardAddController implements SubController {
 
 			 // BoardDto 객체 생성하여 title과 contents를 담음
 	        BoardDto dto = new BoardDto();
-	        dto.setTitle(title);
+//	        dto.setTitle(title);
 	        dto.setContents(contents);
 	        System.out.println(title+" "+contents);
 

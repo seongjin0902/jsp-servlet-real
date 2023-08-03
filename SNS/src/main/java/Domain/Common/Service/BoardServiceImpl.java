@@ -1,15 +1,11 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 
 import Domain.Common.Dao.BoardDao;
 import Domain.Common.Dao.BoardDaoImpl;
 //import Domain.Common.Dao.CommentDao;
 import Domain.Common.Dto.BoardDto;
-import Domain.Common.Dto.MemberDto;
 
 public class BoardServiceImpl implements BoardService{
 
@@ -35,7 +31,7 @@ public class BoardServiceImpl implements BoardService{
 	// 글 모두 조회하기(비회원,회원,관리자 모두)
 	public List<BoardDto> getAllBoard() throws Exception {
 		System.out.println("BoardService's getAllBoard()");
-		return Bdao.select();
+		return Bdao.getAllBoard();
 	}
 
 	// 글 하나 조회
@@ -52,9 +48,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	// 글 id로 조회
-	public List<BoardDto> boardsearch_id(String id) throws Exception {
+	public List<BoardDto> boardsearch_id(String keyword) throws Exception {
 		System.out.println("BoardService's boardsearch()");
-		return Bdao.search_id(id);
+		return Bdao.search_id(keyword);
 	}
 
 	// 글 title로 조회
@@ -110,18 +106,6 @@ public class BoardServiceImpl implements BoardService{
 	public boolean boardsearch_title(BoardDto dto) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	@Override
-	public boolean boardsearch_mine(BoardDto dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public List<BoardDao> getAllBook(HttpServletRequest req) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 

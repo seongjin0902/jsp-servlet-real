@@ -1,36 +1,48 @@
 package Controller.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import Controller.SubController;
-import Domain.Common.Dto.MemberDto;
+import Domain.Common.Dto.BoardDto;
+import Domain.Common.Service.BoardService;
+import Domain.Common.Service.BoardServiceImpl;
 
 public class MemberPageController implements SubController {
+	private BoardService service = BoardServiceImpl.getInstance();
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		System.out.println("memberpagecontroller 실행할거임");
+		System.out.println("execute로 들어옴");
+		try {
+			HttpSession session = req.getSession();
+			String role = (String) session.getAttribute("ROLE");
+			System.out.println("session: " + role);
+			if (role.equals("ROLE_USER")) {
+				req.getRequestDispatcher("/WEB-INF/view/member/user.jsp").forward(req, resp);
+				return ;
+			} else if (role.equals("MEMBER")) {
 
-    @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) {
-        HttpSession session = req.getSession();
-        MemberDto member = (MemberDto) session.getAttribute("LOGGED_IN_USER");
+				// 회원 아이디 가져오기 
+				// 이게 문제다 유진아
+				String memberId = (String) session.getAttribute("ID");
+				System.out.println("memberid : " + memberId);
+				// 회원의 작성 게시물 데이터 가져오기
+				List<BoardDto> posts = service.boardsearch_mine(memberId);
+				System.out.println("posts: " +posts);
 
-        if (member != null) {
-            req.setAttribute("member", member);
-            // mypage.jsp로 포워드합니다.
-            try {
-                req.getRequestDispatcher("/WEB-INF/view/mypage.jsp").forward(req, resp);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            // 로그인하지 않은 경우를 처리합니다.
-            // 로그인 페이지로 리다이렉트하거나 오류 메시지를 표시할 수 있습니다.
-            // 간단하게 로그인 페이지로 리다이렉트하겠습니다.
-            try {
-                resp.sendRedirect("login.do");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+				// 게시물 데이터를 request에 저장하여 JSP로 전달
+				req.setAttribute("posts", posts);
+				req.getRequestDispatcher("/WEB-INF/view/member/mypage.jsp").forward(req, resp);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ;
+
+	}
+
 }

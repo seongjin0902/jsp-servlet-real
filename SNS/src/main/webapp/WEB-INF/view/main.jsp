@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -48,7 +48,7 @@ table>tr>th {
 	<h1>
 		<a href="/WeSee/">WeSee</a>
 	</h1>
-
+	
 	<div>
 		<button style="border: none; background-color: white;">
 			<img src="Resource/Bell.png">
@@ -59,16 +59,12 @@ table>tr>th {
 		<button style="border: none; background-color: white;">
 			<img src="Resource/Pencil.png">
 		</button>
-		<a href=<c:url value="/messageController"/>>
-			<button style="border: none; background-color: white;">
-				<img src="Resource/Message.png">
-			</button>
-		</a>
-		<a href=<c:url value="/MypageController"/>>
+		<button style="border: none; background-color: white;">
+			<img src="Resource/Message.png">
+		</button>
 		<button style="border: none; background-color: white;">
 			<img src="Resource/Person.png">
 		</button>
-		</a>
 	</div>
 	<div
 		style="display: flex; justify-content: space-evenly; margin-top: 30px;">
@@ -193,7 +189,7 @@ table>tr>th {
 			</tr>
 			<tr class='scroll'
 				style="background-color: white; height: 90px; overflow: auto;">
-
+			
 				<td style="display: flex;">
 					<div style="position: relative;">mango456</div>
 					<div class='scroll'
@@ -218,7 +214,7 @@ table>tr>th {
 					<div style="position: relative; margin-left: 10px;">02.02.01
 						15:30</div> <!-- nowdate(date)  -->
 				</td>
-
+				
 			</tr>
 
 			<tr style="background-color: white;">

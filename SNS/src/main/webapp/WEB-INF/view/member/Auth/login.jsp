@@ -91,24 +91,6 @@ button {
 	background-color: white;
 	text-decoration: none;
 	color: black;
-	border-style: none;
-	cursor: pointer;
-}
-
-.msg{
-	width : 650px;
-	font-size: 1.5rem;
-	border-top : 2px solid gray;
-}
-
-.joinbox {
-	display: flex;
-	justify-content: space-around;
-}
-
-.join{
-	width : 450px;
-	margin-left: 80px;
 }
 </style>
 </head>
@@ -131,27 +113,25 @@ button {
 					type="password" placeholder="비밀번호" />
 				<div class="ex2">
 					<button>로그인</button>
-				</div>
-			</div>
+		</form>
+		<form id="joinForm">
+			<a href="javascript:void(0);" onclick="submitJoinForm();" class="ex1">
+				<button>회원가입</button>
+			</a>
 		</form>
 
-
-
-	</div>
-	<div class="joinbox">
-			<%-- msg 변수에 값이 있을 때에만 출력 --%>
-			<c:if test="${not empty msg}">
-				<div class="msg">${msg}</div>
-			</c:if>
-		<button class="join" onclick="goToJoinPage()">회원가입을 하시려면 이곳을 클릭하세요.</button>
-	</div>
-
+				</div>
+			</div>
+		</div>
+	<%-- msg 변수에 값이 있을 때에만 출력 --%>
+	<c:if test="${not empty msg}">
+		<div class="msg">${msg}</div>
+	</c:if>
 
 	<script>
-		function goToJoinPage() {
-			window.location.href = "<c:url value='/join.jsp' />";
+		function submitJoinForm() {
+			document.getElementById("joinForm").submit();
 		}
 	</script>
-
 </body>
 </html>

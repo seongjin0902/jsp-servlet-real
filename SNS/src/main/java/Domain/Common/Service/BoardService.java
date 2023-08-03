@@ -2,9 +2,6 @@ package Domain.Common.Service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import Domain.Common.Dao.BoardDao;
 import Domain.Common.Dto.BoardDto;
 //import Domain.Common.Dto.CommentDto;
 
@@ -27,15 +24,15 @@ public interface BoardService {
 	boolean boardDelete(String id) throws Exception;
 
 	//글 id로 조회
-	List<BoardDto> boardsearch_id(String id) throws Exception;
+	List<BoardDto> boardsearch_id(String keyword) throws Exception;
 
 	//글 title로 조회
 	boolean boardsearch_title(BoardDto dto) throws Exception;
 
 	//내가 쓴 글 조회
-	boolean boardsearch_mine(BoardDto dto) throws Exception;
+	List<BoardDto> boardsearch_mine(String id) throws Exception;
 
-	List<BoardDao> getAllBook(HttpServletRequest req);
+
 
 //	//댓글 조회
 //	List<CommentDto> Commentselect(CommentDto dto) throws Exception;

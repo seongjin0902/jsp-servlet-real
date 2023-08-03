@@ -11,13 +11,13 @@ public interface BoardDao {
 	int insert(BoardDto dto) throws Exception;
 
 	// 전체글 조회
-	List<BoardDto> select() throws Exception;
+	List<BoardDto> getAllBoard() throws Exception;
 
 	// 글 하나 조회(number로 조회)
 	BoardDto select_one(int number) throws Exception;
 
 	// id 나 title로 글 조회
-	List<BoardDto> search_id(String id) throws Exception;
+	List<BoardDto> search_id(String keyword) throws Exception;
 
 	List<BoardDto> search_title(String title) throws Exception;
 

@@ -1,5 +1,6 @@
 package Domain.Common.Dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,18 +25,17 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 //	글 작성
 	@Override
 	public int insert(BoardDto dto) throws Exception {
-		pstmt = conn.prepareStatement("insert into tbl_board values (null,?,?,?,now(),null)");
+		pstmt = conn.prepareStatement("insert into tbl_board values (null,?,?,now(),null)");
 
 		pstmt.setString(1, dto.getId());
-		pstmt.setString(2, dto.getTitle());
-		pstmt.setString(3, dto.getContents());
+		pstmt.setString(2, dto.getContents());
 
 		return pstmt.executeUpdate();
 	}
 
 //	전체글 조회
 	@Override
-	public List<BoardDto> select() throws Exception {
+	public List<BoardDto> getAllBoard() throws Exception {
 		List<BoardDto> list = new ArrayList();
 		BoardDto dto = null;
 		pstmt = conn.prepareStatement("select * from tbl_board");
@@ -45,10 +45,10 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 				dto = new BoardDto();
 				dto.setNumber(rs.getInt("number"));
 				dto.setId(rs.getString("id"));
-				dto.setTitle(rs.getString("title"));
 				dto.setContents(rs.getString("contents"));
 				dto.setDate(rs.getString("date"));
 				dto.setHits(rs.getInt("hits"));
+				dto.setLike(rs.getInt("like"));
 				list.add(dto);
 			}
 		}
@@ -68,9 +68,9 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
 			dto.setDate(rs.getString("date"));
 			dto.setHits(rs.getInt("hits"));
+			dto.setLike(rs.getInt("like"));
 			rs.close();
 		}
 		pstmt.close();
@@ -79,23 +79,26 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 
 //	id 나 title로 글 조회
 	@Override
-	public List<BoardDto> search_id(String id) throws Exception {
+	public List<BoardDto> search_id(String keyword) throws Exception {
+		System.out.println("boardSearchDaoImpl's search_id!");
 		List<BoardDto> list = new ArrayList();
 		BoardDto dto = null;
 		pstmt = conn.prepareStatement("select * from tbl_board where id = ?");
-		pstmt.setString(1, id);
+		pstmt.setString(1, keyword);
 		rs = pstmt.executeQuery();
 		if (rs != null) {
-			rs.next();
-			dto = new BoardDto();
-			dto.setNumber(rs.getInt("number"));
-			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
-			dto.setDate(rs.getString("date"));
-			dto.setHits(rs.getInt("hits"));
-			rs.close();
+			while (rs.next()) {
+				dto = new BoardDto();
+				dto.setNumber(rs.getInt("number"));
+				dto.setId(rs.getString("id"));
+				dto.setContents(rs.getString("contents"));
+				dto.setDate(rs.getString("date"));
+				dto.setHits(rs.getInt("hits"));
+				dto.setLike(rs.getInt("like"));
+				list.add(dto);
+			}
 		}
-		pstmt.close();
+		System.out.println(list);
 		return list;
 	}
 
@@ -111,9 +114,9 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
 			dto.setDate(rs.getString("date"));
 			dto.setHits(rs.getInt("hits"));
+			dto.setLike(rs.getInt("like"));
 			rs.close();
 		}
 		pstmt.close();
@@ -123,34 +126,37 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 //	내가 쓴 글 조회
 	@Override
 	public List<BoardDto> search_mine(String id) throws Exception {
+		System.out.println("id:" +id);
 		List<BoardDto> list = new ArrayList();
 		BoardDto dto = null;
 		pstmt = conn.prepareStatement("select * from tbl_board where id = ?");
-		pstmt.setString(1, id);
+		pstmt.setString(1,id);
 		rs = pstmt.executeQuery();
-		if (rs != null) {
-			rs.next();
-			dto = new BoardDto();
-			dto.setNumber(rs.getInt("number"));
-			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
-			dto.setDate(rs.getString("date"));
-			dto.setHits(rs.getInt("hits"));
-			rs.close();
-		}
+		while (rs.next()) {
+	        dto = new BoardDto();
+	        dto.setNumber(rs.getInt("number"));
+	        dto.setId(rs.getString("id"));
+	        dto.setContents(rs.getString("contents"));
+	        dto.setDate(rs.getString("date"));
+	        dto.setHits(rs.getInt("hits"));
+	        dto.setLike(rs.getInt("like"));
+	        list.add(dto);
+	    }
+	    rs.close();
+		System.out.println(list);
 		pstmt.close();
 		return list;
 	}
 
 //	내가 쓴 글 수정
 	@Override
-	public int update(BoardDto dto) throws Exception {
-		pstmt = conn.prepareStatement("update tbl_board set title=?,contents=?");
-		pstmt.setString(3, dto.getTitle());
-		pstmt.setString(4, dto.getContents());
+    public int update(BoardDto dto) throws SQLException {
+        pstmt = conn.prepareStatement("update tbl_board set contents=? where number=?");
+        pstmt.setString(1, dto.getContents());
+        pstmt.setInt(2, dto.getNumber());
 
-		return pstmt.executeUpdate();
-	}
+        return pstmt.executeUpdate();
+    }
 
 //	내가 쓴 글 삭제
 	@Override

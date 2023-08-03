@@ -13,13 +13,8 @@ import Domain.Common.Dto.MemberDto;
 
 
 public class MemberServiceImpl implements MemberService {
-
-	
-	 
 	
 	private MemberDao dao;
-	
-	
 	
 	//싱글톤
 	private static MemberService instance;
@@ -108,31 +103,33 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	//로그인
-		@Override
-		public boolean login(HttpServletRequest req) throws Exception{
-			
-			String id = (String) req.getParameter("id");
-			String pw = (String) req.getParameter("pw");
-			//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
-			MemberDto dbDto = dao.select_one(id,pw);
-			if(dbDto==null) {
-				System.out.println("[ERROR] Login Fail... 아이디가 일치하지 않습니다");
-				req.setAttribute("msg", "[ERROR] Login Fail... 아이디가 일치하지 않습니다");
-				return false;
-			}
-			if(!pw.equals(dbDto.getPw())) {
-				System.out.println("[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
-				req.setAttribute("msg", "[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
-				return false;
-			}
-			System.out.println("login func's dbDto" + dbDto);
-			HttpSession session = req.getSession(true);
-			System.out.println("login func's session : " + session);
-			session.setAttribute("ID", id);
-			session.setAttribute("ROLE", dbDto.getRole());
-			session.setMaxInactiveInterval(60*30);
-			return true;
+	@Override
+	public boolean login(HttpServletRequest req) throws Exception{
+		
+		String id = (String) req.getParameter("id");
+		String pw = (String) req.getParameter("pw");
+		//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
+		MemberDto dbDto = dao.select_one(id,pw);
+		if(dbDto==null) {
+			System.out.println("[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+			req.setAttribute("msg", "[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+			return false;
 		}
+		if(!pw.equals(dbDto.getPw())) {
+			System.out.println("[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
+			req.setAttribute("msg", "[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
+			return false;
+		}
+		System.out.println("login func's dbDto" + dbDto);
+		HttpSession session = req.getSession(true);
+		System.out.println("login func's session : " + session);
+		session.setAttribute("ID", id);
+		session.setAttribute("ROLE", dbDto.getRole());
+		session.setMaxInactiveInterval(60*30);
+		return true;
+	}
+
+
 	
 
 

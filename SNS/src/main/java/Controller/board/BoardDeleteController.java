@@ -14,7 +14,7 @@ public class BoardDeleteController implements SubController{
 	
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("BookDeleteController execute");
+		System.out.println("BoardDeleteController execute");
 		
 	}
 

@@ -5,15 +5,18 @@ import java.util.List;
 import Domain.Common.Dto.MemberDto;
 
 public interface MemberDao {
-    int insert(MemberDto dto) throws Exception;
 
-    List<MemberDto> select() throws Exception;
+	//CRUD
+	int insert(MemberDto dto) throws Exception;
 
-    MemberDto select(String id) throws Exception;
+	List<MemberDto> select() throws Exception;
 
-    int update(MemberDto dto) throws Exception;
+	MemberDto select(String id) throws Exception;
 
-    int delete(String id) throws Exception;
+	int update(MemberDto dto) throws Exception;
 
-    MemberDto select_one(String id, String pw) throws Exception;
+	int delete(String id) throws Exception;
+
+	MemberDto select_one(String id, String pw) throws Exception;
+
 }
