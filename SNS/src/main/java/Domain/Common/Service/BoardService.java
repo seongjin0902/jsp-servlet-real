@@ -24,15 +24,13 @@ public interface BoardService {
 	boolean boardDelete(String id) throws Exception;
 
 	//글 id로 조회
-	List<BoardDto> boardsearch_id(String keyword) throws Exception;
+	List<BoardDto> boardsearch_id(String id) throws Exception;
 
 	//글 title로 조회
 	boolean boardsearch_title(BoardDto dto) throws Exception;
 
 	//내가 쓴 글 조회
 	List<BoardDto> boardsearch_mine(String id) throws Exception;
-
-
 
 //	//댓글 조회
 //	List<CommentDto> Commentselect(CommentDto dto) throws Exception;

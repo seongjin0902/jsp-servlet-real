@@ -19,7 +19,7 @@ public class BoardSearchController implements SubController {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		System.out.println("BoardSearchController execute");
+		System.out.println("BookSearchController execute");
 		// 1 파라미터 추출(keyfield,keyword,criteria)
 		String keyword = req.getParameter("keyword");
 		// 2 입력값 검증(생략)
@@ -41,7 +41,8 @@ public class BoardSearchController implements SubController {
 			}
 			
 			req.getRequestDispatcher("/tmplate.jsp").forward(req, resp);
-		
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -66,15 +66,17 @@ th {
 }
 </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
+
 	function editRow(boardNumber, contents) {
 		var row = document.getElementById('row-' + boardNumber);
 		var cells = row.getElementsByTagName('td');
 
-		for (var i = 2; i < cells.length - 4; i++) {
-			var cellValue = cells[i].innerText;
-			cells[i].innerHTML = '<input type="text" name="contents-' + boardNumber + '" value="' + cellValue + '" />';
-		}
+		
+			var cellValue = cells[2].innerText;
+			cells[2].innerHTML = '<input type="text" name="contents-' + boardNumber + '" value="' + cellValue + '" />';
+		
 
 		var editButton = row.getElementsByClassName('edit-button')[0];
 		var saveButton = row.getElementsByClassName('save-button')[0];
@@ -92,6 +94,17 @@ th {
 			formData.append(inputs[i].name, inputs[i].value);
 		}
 
+		var apiUrl = "http://localhost:8080/SNS/member/mypage.do";
+
+		
+		const params = {params :{"boardNumber" : boardNumber,"contents" : inputs[0].value } }
+		
+		
+		console.log("requestData",null,params);
+		axios.post(apiUrl,null,params)
+		.then(response=>{ console.log("response",response); location.reload();})
+		.catch(error=>{})
+		/* 
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST', 'mypage.do', true);
 		xhr.onload = function() {
@@ -113,7 +126,7 @@ th {
 				}
 			}
 		};
-		xhr.send(formData);
+		xhr.send(formData); */
 	}
 </script>
 </head>
@@ -147,12 +160,13 @@ th {
 									<th>조회수</th>
 									<th>좋아요</th>
 									<th>수정</th>
+									<th>삭제</th>
 								</tr>
 								<c:forEach items="${posts}" var="board">
 									<tr id="row-${board.number}">
 										<td>${board.number}</td>
 										<td>${board.id}</td>
-										<td>${board.contents}</td>
+										<td class=contents>${board.contents}</td>
 										<td>${board.date}</td>
 										<td>${board.hits}</td>
 										<td>${board.like}</td>
@@ -161,6 +175,17 @@ th {
 												onclick="editRow('${board.number}', '${board.contents}')">수정</button>
 											<button class="save-button" style="display: none;"
 												onclick="saveRow('${board.number}')">저장</button>
+										</td>
+								
+										<td>
+
+											<form action="board/delete.do" method="post">
+												<!-- 삭제 기능을 수행하는 폼 추가 -->
+												<input type="hidden" name="boardNumber"
+													value="${board.number}" />
+												<button type="submit">삭제</button>
+											
+											</form>
 										</td>
 									</tr>
 								</c:forEach>

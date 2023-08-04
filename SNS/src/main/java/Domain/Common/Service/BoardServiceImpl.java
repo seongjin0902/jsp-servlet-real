@@ -1,11 +1,13 @@
 package Domain.Common.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import Domain.Common.Dao.BoardDao;
 import Domain.Common.Dao.BoardDaoImpl;
 //import Domain.Common.Dao.CommentDao;
 import Domain.Common.Dto.BoardDto;
+import Domain.Common.Dto.MemberDto;
 
 public class BoardServiceImpl implements BoardService{
 
@@ -31,7 +33,7 @@ public class BoardServiceImpl implements BoardService{
 	// 글 모두 조회하기(비회원,회원,관리자 모두)
 	public List<BoardDto> getAllBoard() throws Exception {
 		System.out.println("BoardService's getAllBoard()");
-		return Bdao.getAllBoard();
+		return Bdao.select();
 	}
 
 	// 글 하나 조회
@@ -48,9 +50,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	// 글 id로 조회
-	public List<BoardDto> boardsearch_id(String keyword) throws Exception {
+	public List<BoardDto> boardsearch_id(String id) throws Exception {
 		System.out.println("BoardService's boardsearch()");
-		return Bdao.search_id(keyword);
+		return Bdao.search_id(id);
 	}
 
 	// 글 title로 조회
@@ -60,7 +62,7 @@ public class BoardServiceImpl implements BoardService{
 		return Bdao.search_title(title);
 	}
 
-	// 글 등록하기(회원)
+	// 글 등록하기
 	public int boardAdd(BoardDto dto) throws Exception {
 		System.out.println("BoardService's boardAdd()");
 
@@ -71,19 +73,8 @@ public class BoardServiceImpl implements BoardService{
 	// 글 수정하기
 	public boolean boardUpdate(BoardDto dto, String sid, int number) throws Exception {
 		System.out.println("BoardService's boardupdate()");
+		return Bdao.update(dto)>0;
 
-//		// 멤버서비스에서 role(권한-회원인지아닌지) 정보를 가져옴
-//		String role = memberService.getRole(sid);
-//		Session session = (Session) memberService.sessionMap.get(sid);
-//
-//		Map<String, Object> results = memberService.login("id", "pw");
-//
-//		if (session.getId().equals(dto.getId()) || role == "MASTER") {
-//			int result = Bdao.update(dto);
-//			if (result > 0)
-//				return true;
-//		}
-		return false;
 	}
 
 	// 글 삭제하기
@@ -108,7 +99,13 @@ public class BoardServiceImpl implements BoardService{
 		return false;
 	}
 
-
+//	@Override
+//	public boolean boardsearch_mine(BoardDto dto) throws Exception {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
+//
+//
 //	@Override
 //	public List<CommentDto> Commentselect(CommentDto dto) throws Exception {
 //		// TODO Auto-generated method stub

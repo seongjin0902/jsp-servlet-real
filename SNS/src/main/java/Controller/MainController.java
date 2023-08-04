@@ -11,6 +11,7 @@ public class MainController implements SubController{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
+		System.out.println("메인컨트롤러 execute!");
 		//1 파라미터
 		
 		//2 입력값 검증

@@ -19,7 +19,7 @@ public class ConnectionPool {
 	public ConnectionPool(){
 		id="root";
 		pw="1234";
-		url="jdbc:mysql://localhost:3306/게시판";
+		url="jdbc:mysql://localhost:3306/sns";
 		
 		try {
 			if(conn==null) {

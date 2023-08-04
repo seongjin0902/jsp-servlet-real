@@ -66,7 +66,7 @@ h1 {
 						class="show--block">사용자ID : ${sessionScope.userId}</input>
 					<div>
 						글 내용을 입력하시라요.
-						<textarea name="content" id="content">여기에 입력</textarea>
+						<textarea name="contents" id="contents">여기에 입력</textarea>
 					</div>
 					<button type="submit">저장</button>
 				</form>
